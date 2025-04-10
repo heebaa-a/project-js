@@ -37,12 +37,12 @@ buttons.forEach(button => {
         displayResult.textContent = result;
 
 
-        var history=document.createElement('div')
-        history.innerText=`${expression}=${result}`
-        history.classList.add('history');
-        var allhistory=document.getElementById('all-history')
-        allhistory.classList.add('allhistory');
-        allhistory.appendChild(history)
+        var historyitem=document.createElement('div')
+        historyitem.innerText=`${expression}=${result}`
+        historyitem.classList.add('history-item');
+        var allhistory=document.getElementById('history')
+        allhistory.classList.add('history');
+        allhistory.appendChild(historyitem)
 
 
 
