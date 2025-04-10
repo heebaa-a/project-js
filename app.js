@@ -8,8 +8,8 @@ let expression = "";
 buttons.forEach(button => {
   button.addEventListener("click", () => {
 
-    const value = button.dataset.value || button.textContent.trim();
 
+    const value = button.dataset.value || button.textContent.trim();
 
 
     if (button.dataset.action === "clear") {
