@@ -37,6 +37,16 @@ buttons.forEach(button => {
           .replace(/%/g, "/100");
         let result = eval(evalExpr);
         displayResult.textContent = result;
+
+        var history=document.createElement('div')
+        history.innerText=`${expression}=${result}`
+        history.classList.add('history');
+        var allhistory=document.getElementById('all-history')
+        allhistory.classList.add('allhistory');
+        allhistory.appendChild(history)
+
+
+
       } catch {
         displayResult.textContent = "Error";
       }
