@@ -1,12 +1,16 @@
 const displayExpression = document.getElementById("expression");
 const displayResult = document.getElementById("result");
+const historyContainer = document.getElementById("history");
 const buttons = document.querySelectorAll(".btn");
 
 let expression = "";
 
 buttons.forEach(button => {
   button.addEventListener("click", () => {
-    const value =button.dataset.value || button.textContent.trim();
+
+
+    const value = button.dataset.value || button.textContent.trim();
+
 
     if (button.dataset.action === "clear") {
       expression = "";
@@ -21,12 +25,6 @@ buttons.forEach(button => {
       return;
     }
 
-    // if (button.dataset.action === "delete") {
-    //   expression = expression.slice(0, -1);
-    //   displayExpression.textContent = expression;
-    //   return;
-    // }
-
     if (value === "=") {
       try {
         let evalExpr = expression
@@ -38,12 +36,14 @@ buttons.forEach(button => {
         let result = eval(evalExpr);
         displayResult.textContent = result;
 
+
         var history=document.createElement('div')
         history.innerText=`${expression}=${result}`
         history.classList.add('history');
         var allhistory=document.getElementById('all-history')
         allhistory.classList.add('allhistory');
         allhistory.appendChild(history)
+
 
 
 
