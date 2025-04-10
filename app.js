@@ -1,12 +1,13 @@
 const displayExpression = document.getElementById("expression");
 const displayResult = document.getElementById("result");
+const historyContainer = document.getElementById("history");
 const buttons = document.querySelectorAll(".btn");
 
 let expression = "";
 
 buttons.forEach(button => {
   button.addEventListener("click", () => {
-    const value = button.textContent.trim();
+    const value = button.dataset.value || button.textContent.trim();
 
     if (button.dataset.action === "clear") {
       expression = "";
@@ -21,12 +22,6 @@ buttons.forEach(button => {
       return;
     }
 
-    // if (button.dataset.action === "delete") {
-    //   expression = expression.slice(0, -1);
-    //   displayExpression.textContent = expression;
-    //   return;
-    // }
-
     if (value === "=") {
       try {
         let evalExpr = expression
@@ -37,6 +32,12 @@ buttons.forEach(button => {
           .replace(/%/g, "/100");
         let result = eval(evalExpr);
         displayResult.textContent = result;
+
+        const historyItem = document.createElement("div");
+        historyItem.className = "history-item";
+        historyItem.textContent = `${expression} = ${result}`;
+        historyContainer.prepend(historyItem);
+
       } catch {
         displayResult.textContent = "Error";
       }

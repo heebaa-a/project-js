@@ -67,7 +67,7 @@ body {
   }
 
   .delete {
-    background: #5f6264; /* grey color */
+    background: #5f6264; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,6 +82,41 @@ body {
     width: 28px;
     height: 28px;
   }
+
+  .layout {
+    display: flex;
+    justify-content: center;
+    /* align-items: baseline; */
+    gap: 40px; 
+    margin-top: 60px;
+  }
+  
+  .calculator-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .history {
+    width: 300px;
+    max-height: 300px;
+    overflow-y: auto;
+    background: #f1f1f1;
+    padding: 15px;
+    border-radius: 10px;
+    font-family: monospace;
+    font-size: 14px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .history-item {
+    margin-bottom: 8px;
+    background: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  
   
   [data-action="delete"] {
     background: #575353;
