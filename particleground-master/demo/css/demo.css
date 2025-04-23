@@ -1,0 +1,406 @@
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(to bottom right, #000e3b, #adcbf5);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #202020;
+    height: 100vh;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* New Transparent Calculator Styles */
+.calculator {
+    width: 90vw;
+    max-width: 500px;
+    height: 94vh;
+    max-height: 900px;
+    border-radius: 15px;
+    background-color: transparent;
+    backdrop-filter: blur(8px);
+    position: fixed;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: pop-in 0.5s ease-out;
+    margin: 0 auto;
+    margin-top: -12vh;
+    padding: 20px;
+}
+
+.calculator-buttons {
+    height: 90vh;
+    max-height: 800px;
+    margin-top: 20vh;
+}
+
+.calculator-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1.5vh 1vw;
+}
+
+.calculator-button {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 18vw;
+    max-width: 150px;
+    height: 8vh;
+    max-height: 80px;
+    border-radius: 15px;
+    font-size: min(3vw, 1.5em);
+    color: #000000;
+    opacity: 0;
+    box-shadow: 0px 0px 10px rgba(176,224,255,255),
+                    inset 2px 2px 4px rgba(255, 255, 255, 0.05),
+                    inset -2px -2px 4px rgba(176,224,255,255);
+    transition: all 0.3s ease;
+    margin: 0.5vh;
+}
+
+.calculator-button:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.calculator-equal {
+    background-color: rgba(32, 172, 253, 0.9);
+    width: 40vw;
+    max-width: 280px;
+    color: white;
+    box-shadow: 0px 0px 15px rgba(32, 172, 253, 0.5),
+                inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+                inset -2px -2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.calculator-zero {
+    width: 20vw;
+    max-width: 150px;
+}
+
+.calculator-input {
+    width: 86vw;
+    max-width: 380px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    height: 6vh;
+    max-height: 50px;
+    font-size: min(5vw, 2.5em);
+    color: #000000;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    padding: 0 2vw;
+    margin-top: 3vh;
+}
+
+.calculator-expression {
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    margin-top: 2vh;
+}
+
+.calculator-result {
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.calculator-typing {
+    position: absolute;
+    top: 15vh;
+    width: 100%;
+    margin-top: -2vh;
+
+}
+
+.calculator-showing {
+    position: absolute;
+    top: 8vh;
+    width: 100%;
+    
+}
+
+.blue-button {
+    color: #20acfd;
+    box-shadow: 0px 0px 10px rgba(176, 224, 255, 0.4),
+                inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+                inset -2px -2px 4px rgba(176, 224, 255, 0.3);
+}
+
+.blue-bg-button {
+    background-color: rgba(176, 224, 255, 0.8);
+    color: white;
+    box-shadow: 0px 0px 10px rgba(176, 224, 255, 0.4),
+                inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+                inset -2px -2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; 
+    height: calc(100vh - 100px);
+}
+
+.calculator-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.history {
+    display: none;
+    width: 300px;
+    max-height: 300px;
+    overflow-y: auto;
+    background: #f1f1f1;
+    padding: 15px;
+    border-radius: 10px;
+    font-family: monospace;
+    font-size: 14px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.history-item {
+    margin-bottom: 8px;
+    background: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+[data-action="delete"] {
+    background: #575353;
+    color: white;
+    grid-column: span 2;
+}
+
+[data-action="delete"]:hover {
+    background: #e57373;
+}
+
+@keyframes pop-in {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes enter3D {
+    0% {
+        opacity: 0.5;
+        transform: translate3d(-50px, -300px, 400px) rotateX(40deg) rotateY(20deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg);
+    }
+}
+
+.animate {
+    animation: enter3D 1s ease forwards;
+}
+/* -----------------------------------unit----------------------------- */
+.unit-converter {
+    display: none;
+    background: #2d2d2d;
+    padding: 20px;
+    border-radius: 20px;
+    color: white;
+    font-family: 'Patrick Hand', cursive;
+    width: 300px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    flex-direction: column;
+    gap: 15px;
+}
+.unit-converter input,
+.unit-converter select,
+.unit-converter button {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+.unit-converter input,
+.unit-converter select {
+    background: #1e1e1e;
+    color: white;
+}
+.unit-converter button {
+    background: #ff9500;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.unit-converter button:hover {
+    background: #ffa733;
+}
+
+/* nav----------------------------------------------- */
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    margin-top: -1vh;
+}
+
+.nav, .menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav {
+    position: relative;
+    z-index: 21;
+    width: auto;
+    ;
+    /* margin-top: 5vh; */
+    background-color: transparent;
+    padding: 20px;
+    transition: 0.5s;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 8px 15px rgba(0,0,0,.2);
+}
+
+.menu {
+    margin: 0;
+    padding: 0;
+    width: 0;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.nav input:checked ~ .menu {
+    width: 200px;
+}
+
+.menu li {
+    list-style: none;
+    margin: 0 10px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #000000;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: 0.5s;
+}
+
+.menu li a:hover {
+    color: #161919;
+}
+
+.nav input {
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.nav span {
+    position: absolute;
+    left: 30px;
+    width: 30px;
+    height: 4px;
+    border-radius: 50px;
+    background-color: rgba(32, 172, 253, 0.5);
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.nav input:checked ~ span {
+    background-color: #f974a1;
+}
+
+.nav span:nth-child(2) {
+    transform: translateY(-8px);
+}
+
+.nav input:checked ~ span:nth-child(2) {
+    transform: translateY(0) rotate(-45deg);
+}
+.nav span:nth-child(3) {
+    transform: translateY(8px);
+}
+
+.nav input:checked ~ span:nth-child(3) {
+    transform: translateY(0) rotate(45deg);
+}
+/* -------------------------time-converter------------------- */
+.time-converter {
+    display: none;
+    background: transparent;
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    width: 300px;
+    margin-top: 40px;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    backdrop-filter: blur(8px);
+}
+
+.time-converter label,
+.time-converter input,
+.time-converter select,
+.time-converter button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.time-converter button {
+    background: rgba(32, 172, 253, 0.9);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .calculator {
+        width: 70vw;
+    }
+    .calculator-button {
+        font-size: min(2vw, 1.5em);
+    }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .calculator {
+        height: 90vh;
+    }
+    .calculator-buttons {
+        height: 50vh;
+    }
+}
+
+/* showing ---------------------------------------- */
+
+/* Positioning for history, time-converter, and unit-converter */
+.history, .time-converter, .unit-converter {
+position: absolute;
+top: 50%;
+left: 5%;
+transform: translateY(-50%);
+width: 300px; /* Adjust width as needed */
+z-index: 10; /* Ensure it appears above other elements */
+}
