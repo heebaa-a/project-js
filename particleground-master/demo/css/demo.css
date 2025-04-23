@@ -18,7 +18,7 @@ body {
 
 /* New Transparent Calculator Styles */
 .calculator {
-    width: 90vw;
+    width: 90vw !important;
     max-width: 500px;
     height: 94vh;
     max-height: 900px;
