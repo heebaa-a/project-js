@@ -19,7 +19,7 @@ body {
 /* New Transparent Calculator Styles */
 .calculator {
     width: 90vw;
-    max-width: 70vw;
+    max-width: 27vw !important;
     max-width: 500px;
     height: 94vh;
     max-height: 900px;
