@@ -52,12 +52,60 @@ buttons.forEach(button => {
                 let result = eval(evalExpr);
                 displayResult.value = result;
 
-                var historyitem = document.createElement('div')
-                historyitem.innerText = `${expression}=${result}`
-                historyitem.classList.add('history-item');
-                var allhistory = document.getElementById('history')
-                allhistory.classList.add('history');
-                allhistory.appendChild(historyitem)
+                // Create history item
+        var historyItem = document.createElement('div');
+        historyItem.classList.add('history-item');
+        historyItem.innerText = `${expression} = ${result}`;
+
+        // Create delete button
+        var deleteBtn = document.createElement('button');
+deleteBtn.innerText = "X";
+deleteBtn.classList.add('delete-btn');
+deleteBtn.style.marginLeft = "10px";
+deleteBtn.style.color = "red"; // Set the text color to red
+deleteBtn.style.float = "right"; // Align the button to the right
+deleteBtn.style.border = "none"; // Remove border
+deleteBtn.style.background = "transparent"; // Make the background transparent
+deleteBtn.style.cursor = "pointer"; // Change cursor to pointer for better UX
+deleteBtn.addEventListener('click', function () {
+    historyItem.remove();
+        });
+
+        // Add "Clear All" button to the history container (only once)
+const historyContainer = document.getElementById('history');
+
+// Check if the button already exists to avoid duplicates
+if (!document.querySelector('.clear-all-btn')) {
+    const clearAllBtn = document.createElement('button');
+    clearAllBtn.innerText = "Clear All";
+    clearAllBtn.classList.add('clear-all-btn');
+    clearAllBtn.style.marginTop = "10px";
+    clearAllBtn.style.color = "white";
+    clearAllBtn.style.backgroundColor = "red";
+    clearAllBtn.style.border = "none";
+    clearAllBtn.style.padding = "5px 10px";
+    clearAllBtn.style.cursor = "pointer";
+    clearAllBtn.style.display = "block"; // Ensure it appears as a block element
+    clearAllBtn.style.marginLeft = "auto"; // Center horizontally
+    clearAllBtn.style.marginRight = "auto";
+
+    // Add event listener to clear all history items
+    clearAllBtn.addEventListener('click', function () {
+        historyContainer.innerHTML = ""; // Clear all history items
+        historyContainer.appendChild(clearAllBtn); // Re-add the button after clearing
+    });
+
+    // Append the "Clear All" button to the history container
+    historyContainer.appendChild(clearAllBtn);
+}
+
+        // Append delete button to history item
+        historyItem.appendChild(deleteBtn);
+
+        // Append history item to history container
+        var allHistory = document.getElementById('history');
+        allHistory.classList.add('history');
+        allHistory.appendChild(historyItem);
 
             } catch {
                 displayResult.value = "Error";

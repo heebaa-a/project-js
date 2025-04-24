@@ -20,7 +20,7 @@ body {
 .calculator {
     width: 90vw;
     max-width: 25.9vw !important;
-    max-width: 500px;
+    max-width: 900px;
     height: 94vh;
     max-height: 900px;
     border-radius: 15px;
@@ -216,7 +216,7 @@ body {
 /* -----------------------------------unit----------------------------- */
 .unit-converter {
     display: none;
-    background: #2d2d2d;
+    background: transparent;
     padding: 20px;
     border-radius: 20px;
     color: white;
@@ -225,6 +225,7 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
     flex-direction: column;
     gap: 15px;
+    backdrop-filter: blur(8px);
 }
 .unit-converter input,
 .unit-converter select,
@@ -236,11 +237,11 @@ body {
 }
 .unit-converter input,
 .unit-converter select {
-    background: #1e1e1e;
-    color: white;
+    background: white;
+    color: black;
 }
 .unit-converter button {
-    background: #ff9500;
+    background: rgba(32, 172, 253, 0.9);
     color: white;
     cursor: pointer;
     transition: background 0.3s;
